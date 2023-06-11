@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bcongtkgtitim"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hearts" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartAmt" type="RichTextLabel" parent="Hearts"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.061
+anchor_right = 0.061
+offset_left = 67.56
+offset_right = 213.56
+offset_bottom = 40.0
+text = "3/3"
+
+[node name="HeartLabel" type="RichTextLabel" parent="Hearts"]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(1, 0.00784314, 0.14902, 1)
+text = "HEARTS
+"
+
+[node name="Mana" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+
+[node name="ManaLabel" type="RichTextLabel" parent="Mana"]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0.156863, 0.564706, 1, 1)
+text = "MANA"
+
+[node name="ManaAmt" type="RichTextLabel" parent="Mana"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.061
+anchor_right = 0.061
+offset_left = 67.56
+offset_right = 213.56
+offset_bottom = 40.0
+text = "10/10"
+
+[node name="EXP" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 80.0
+offset_right = 40.0
+offset_bottom = 120.0
+
+[node name="ExpLabel" type="RichTextLabel" parent="EXP"]
+layout_mode = 0
+offset_right = 146.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(1, 0.831373, 0.603922, 1)
+text = "EXP"
+
+[node name="ExpAmt" type="RichTextLabel" parent="EXP"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.061
+anchor_right = 0.061
+offset_left = 67.56
+offset_right = 213.56
+offset_bottom = 40.0
+text = "0"
