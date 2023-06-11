@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://baxn6hlduca8a"]
+[gd_scene load_steps=7 format=3 uid="uid://baxn6hlduca8a"]
 
 [ext_resource type="PackedScene" uid="uid://dtjht0hatykqg" path="res://env/debug_platform.tscn" id="1_jjryt"]
 [ext_resource type="PackedScene" uid="uid://c2vqw03u5aico" path="res://player/player.tscn" id="2_o2orf"]
+[ext_resource type="PackedScene" uid="uid://0irdjpahq380" path="res://env/debug_tree.tscn" id="2_txcy6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6sjx"]
 
@@ -11,22 +12,86 @@ sky_material = SubResource("ProceduralSkyMaterial_p6sjx")
 [sub_resource type="Environment" id="Environment_0p8ji"]
 background_mode = 2
 sky = SubResource("Sky_0fsi4")
+fog_enabled = true
+fog_density = 0.0476
+volumetric_fog_sky_affect = 0.0
 
 [node name="Level0" type="Node3D"]
 
-[node name="Platform" parent="." instance=ExtResource("1_jjryt")]
+[node name="Node" type="Node3D" parent="."]
 
-[node name="Platform2" parent="." instance=ExtResource("1_jjryt")]
+[node name="Platform" parent="Node" instance=ExtResource("1_jjryt")]
+skeleton = NodePath("../..")
+
+[node name="Platform2" parent="Node" instance=ExtResource("1_jjryt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+skeleton = NodePath("../..")
 
-[node name="Platform3" parent="." instance=ExtResource("1_jjryt")]
+[node name="Platform3" parent="Node" instance=ExtResource("1_jjryt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+skeleton = NodePath("../..")
 
-[node name="Platform4" parent="." instance=ExtResource("1_jjryt")]
+[node name="Platform4" parent="Node" instance=ExtResource("1_jjryt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+skeleton = NodePath("../..")
 
-[node name="Platform5" parent="." instance=ExtResource("1_jjryt")]
+[node name="Platform5" parent="Node" instance=ExtResource("1_jjryt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
+skeleton = NodePath("../..")
+
+[node name="Tree" parent="Node" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, 4, 2.8, -8)
+skeleton = NodePath("../..")
+
+[node name="Tree2" parent="Node" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, -5, 2.8, -24)
+skeleton = NodePath("../..")
+
+[node name="Tree3" parent="Node" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, 6, 2.8, -45)
+skeleton = NodePath("../..")
+
+[node name="Tree4" parent="Node" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, -4, 2.8, -58)
+skeleton = NodePath("../..")
+
+[node name="Node2" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, -1, 0, 0, -144)
+
+[node name="Platform" parent="Node2" instance=ExtResource("1_jjryt")]
+skeleton = NodePath("../..")
+
+[node name="Platform2" parent="Node2" instance=ExtResource("1_jjryt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
+skeleton = NodePath("../..")
+
+[node name="Platform3" parent="Node2" instance=ExtResource("1_jjryt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+skeleton = NodePath("../..")
+
+[node name="Platform4" parent="Node2" instance=ExtResource("1_jjryt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -48)
+skeleton = NodePath("../..")
+
+[node name="Platform5" parent="Node2" instance=ExtResource("1_jjryt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -64)
+skeleton = NodePath("../..")
+
+[node name="Tree" parent="Node2" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, 4, 2.8, -8)
+skeleton = NodePath("../..")
+
+[node name="Tree2" parent="Node2" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, -5, 2.8, -24)
+skeleton = NodePath("../..")
+
+[node name="Tree3" parent="Node2" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, 6, 2.8, -45)
+skeleton = NodePath("../..")
+
+[node name="Tree4" parent="Node2" instance=ExtResource("2_txcy6")]
+transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, -4, 2.8, -58)
+skeleton = NodePath("../..")
 
 [node name="Player" parent="." instance=ExtResource("2_o2orf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
