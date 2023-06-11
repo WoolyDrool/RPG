@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtjht0hatykqg"]
+[gd_scene load_steps=4 format=3 uid="uid://dtjht0hatykqg"]
+
+[ext_resource type="PackedScene" uid="uid://8ndcn632ev7k" path="res://env/debug_wall.tscn" id="1_iu46b"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rxuun"]
 size = Vector2(16, 16)
@@ -13,3 +15,9 @@ mesh = SubResource("PlaneMesh_rxuun")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7bkpy")
+
+[node name="Wall" parent="." instance=ExtResource("1_iu46b")]
+transform = Transform3D(0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0, 1, -10.1, 7.7, 0)
+
+[node name="Wall2" parent="." instance=ExtResource("1_iu46b")]
+transform = Transform3D(-0.258819, -0.965926, -8.9407e-08, -0.965926, 0.258819, -2.23517e-08, 7.45058e-09, 5.96046e-08, -1, 10.1, 7.7, 0)
