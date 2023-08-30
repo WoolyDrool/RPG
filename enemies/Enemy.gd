@@ -2,27 +2,34 @@ extends CharacterBody3D
 
 var nav : NavigationRegion3D
 @onready var nav_agent = $NavigationAgent3D
-var target_location : Node3D
-var player 
+var target_location : Vector3
+var player : Node3D
 
-var move_speed = 10.0
-var move_vec : Vector3
+@export var move_speed = 10.0
+@export var accel = 10
 
 # TODO: Extract these functions to a specific pathfinding script
 
 func _ready():
-	player = get_tree().root.get_nodes_in_group("Player")
-	nav_agent.target_position = target_location.global_position
+	player = Global.players[0]
+	print(player)
+	nav_agent.max_speed = move_speed
 
 func _physics_process(delta):
+	update_target_position()
+	
 	if nav_agent.is_target_reachable() and not nav_agent.is_target_reached():
-		var next_location = nav_agent.get_next_path_position()
-		var direction = global_position.direction_to(next_location)
-		global_position += direction * delta
+		var direction = nav_agent.get_next_path_position() - global_position
+		direction = direction.normalized()
+		
+		velocity = velocity.lerp(direction * move_speed , accel * delta)
+		
+		move_and_slide()
 
 func apply_damage():
-	var path = nav.get_pat
 	print("ugh")
 
 func update_target_position():
+	if player:
+		nav_agent.target_position = player.global_position
 	
