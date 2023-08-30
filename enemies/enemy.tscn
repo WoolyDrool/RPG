@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck6q6y5116rlf"]
+
+[ext_resource type="Script" path="res://enemies/Enemy.gd" id="1_hosw1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_v4icy"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eoru1"]
+albedo_color = Color(0.678431, 0, 0, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gcnsd"]
+data = PackedVector3Array(-0.5, 1, 0.5, 0.5, 1, 0.5, -0.5, -1, 0.5, 0.5, 1, 0.5, 0.5, -1, 0.5, -0.5, -1, 0.5, 0.5, 1, -0.5, -0.5, 1, -0.5, 0.5, -1, -0.5, -0.5, 1, -0.5, -0.5, -1, -0.5, 0.5, -1, -0.5, 0.5, 1, 0.5, 0.5, 1, -0.5, 0.5, -1, 0.5, 0.5, 1, -0.5, 0.5, -1, -0.5, 0.5, -1, 0.5, -0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, -1, -0.5, -0.5, 1, 0.5, -0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, 1, 0.5, -0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, -0.5, 1, -0.5, 0.5, 1, -0.5, -0.5, -1, 0.5, 0.5, -1, 0.5, -0.5, -1, -0.5, 0.5, -1, 0.5, 0.5, -1, -0.5, -0.5, -1, -0.5)
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 256
+script = ExtResource("1_hosw1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_v4icy")
+surface_material_override/0 = SubResource("StandardMaterial3D_eoru1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConcavePolygonShape3D_gcnsd")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
