@@ -13,7 +13,7 @@
 
 [sub_resource type="PrismMesh" id="PrismMesh_iehpm"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model") groups=["Player"]]
 collision_mask = 65792
 script = ExtResource("1_srpgf")
 SPEED = 10.0

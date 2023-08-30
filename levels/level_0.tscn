@@ -108,7 +108,7 @@ skeleton = NodePath("../../../..")
 transform = Transform3D(1, 0, 0, 0, 5.6, 0, 0, 0, 1, -4, 2.8, -58)
 skeleton = NodePath("../../../..")
 
-[node name="Player" parent="." groups=["Player"] instance=ExtResource("2_o2orf")]
+[node name="Player" parent="." instance=ExtResource("2_o2orf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Enemy" parent="." instance=ExtResource("4_l8ysd")]
