@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2vqw03u5aico"]
+[gd_scene load_steps=11 format=3 uid="uid://c2vqw03u5aico"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_srpgf"]
 [ext_resource type="Script" path="res://player/CombatManager.gd" id="2_gxdk8"]
 [ext_resource type="Script" path="res://player/VitalsManager.gd" id="3_ery6u"]
 [ext_resource type="PackedScene" uid="uid://bcongtkgtitim" path="res://player/ui/player_hud.tscn" id="4_hgg0m"]
+[ext_resource type="PackedScene" uid="uid://cyfi811xyve8e" path="res://systems/fsm/abstract_state_machine.tscn" id="5_wdpe3"]
+[ext_resource type="Script" path="res://player/states/Idle.gd" id="6_x8qh8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_277ni"]
 
@@ -13,15 +15,17 @@
 
 [sub_resource type="PrismMesh" id="PrismMesh_iehpm"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("model") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "rotation_helper") groups=["Player"]]
 collision_mask = 65792
 script = ExtResource("1_srpgf")
-SPEED = 10.0
-model = NodePath("PlayerCollision")
-
-[node name="PlayerCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 9, 8)
-fov = 100.0
+MAX_SPEED = 8
+JUMP_SPEED = 5
+ACCEL = 8.0
+DEACCEL = 8
+MOUSE_SENSITIVITY = 0.1
+MOUSE_SMOOTHING = 25
+camera = NodePath(".")
+rotation_helper = NodePath(".")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, 0, 0, 0)
@@ -55,5 +59,16 @@ debug_shape_custom_color = Color(0.941176, 0, 0.501961, 1)
 script = ExtResource("3_ery6u")
 
 [node name="HUD" parent="." instance=ExtResource("4_hgg0m")]
+
+[node name="AbstractStateMachine" parent="." instance=ExtResource("5_wdpe3")]
+
+[node name="Idle" type="Node" parent="AbstractStateMachine"]
+script = ExtResource("6_x8qh8")
+
+[node name="Walk" type="Node" parent="AbstractStateMachine"]
+
+[node name="Jump" type="Node" parent="AbstractStateMachine"]
+
+[node name="Attack" type="Node" parent="AbstractStateMachine"]
 
 [connection signal="timeout" from="PlayerCollision/CombatManager/AttackTimer" to="PlayerCollision/CombatManager" method="_on_attack_timer_timeout"]
