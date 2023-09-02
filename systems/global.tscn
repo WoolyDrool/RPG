@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vdifxltebo7y"]
+
+[ext_resource type="Script" path="res://systems/Global.gd" id="1_74cca"]
+
+[node name="Global" type="Node" node_paths=PackedStringArray("player")]
+script = ExtResource("1_74cca")
+player = NodePath("")
