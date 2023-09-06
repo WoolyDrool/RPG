@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://i25iy61ysi2o"]
+
+[ext_resource type="Script" path="res://entities/cards/card_data.gd" id="1_e08jv"]
+
+[resource]
+script = ExtResource("1_e08jv")
+card_name = ""
+card_description = ""
+card_cost = 0
+card_atk_power = 0
