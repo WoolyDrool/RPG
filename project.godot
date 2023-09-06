@@ -12,13 +12,12 @@ config_version=5
 
 config/name="Mistrun"
 run/main_scene="res://levels/level_0.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://systems/Global.gd"
-DeckManager="*res://systems/combat/deck_manager.gd"
 CombatSystem="*res://systems/combat/combat_system.gd"
 
 [display]
