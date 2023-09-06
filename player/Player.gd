@@ -29,6 +29,7 @@ func _ready():
 
 func _process(delta):
 	process_input(delta)
+	handle_rotation()
 
 func _physics_process(delta):
 	process_movement(delta)
@@ -51,7 +52,7 @@ func process_input(delta):
 
 	input_movement_vector = input_movement_vector.normalized()
 
-	# Basis vectors are already normalized.
+	# Assign to direction
 	dir += -transform.basis.z * input_movement_vector.y
 	dir += transform.basis.x * input_movement_vector.x
 
@@ -64,12 +65,12 @@ func process_movement(delta):
 
 	# Acceleration
 	var hvel = vel
-	hvel.y = 0
-
-	var target = dir
-	target *= MAX_SPEED
-
 	var accel
+	var target = dir
+	
+	hvel.y = 0
+	target *= MAX_SPEED
+	
 	if dir.dot(hvel) > 0:
 		accel = ACCEL
 	else:
@@ -81,3 +82,13 @@ func process_movement(delta):
 	
 	velocity = vel
 	move_and_slide()
+
+func handle_rotation():
+	if input_movement_vector.y > 0: # Forward
+		viewmodel.rotation_degrees = Vector3(0, -180, 0)
+	if input_movement_vector.y < 0: # Back
+		viewmodel.rotation_degrees = Vector3(0, 0, 0)
+	if input_movement_vector.x > 0: # Left
+		viewmodel.rotation_degrees = Vector3(0, 90, 0)
+	if input_movement_vector.x < 0: # Right
+		viewmodel.rotation_degrees = Vector3(0, -90, 0)

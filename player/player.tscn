@@ -13,13 +13,14 @@
 
 [sub_resource type="PrismMesh" id="PrismMesh_iehpm"]
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("viewmodel") groups=["Player"]]
 collision_mask = 65792
 script = ExtResource("1_srpgf")
 MAX_SPEED = 8
 JUMP_SPEED = 5
 ACCEL = 8.0
 DEACCEL = 8
+viewmodel = NodePath("PlayerCollision")
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, 0, 0, 0)
