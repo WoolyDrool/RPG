@@ -17,11 +17,11 @@ fill_to = Vector2(0.5, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a8vh"]
 size = Vector2(224, 320)
 
-[node name="Card" type="Sprite2D"]
+[node name="Card" type="Sprite2D" groups=["Cards"]]
 texture = SubResource("GradientTexture2D_my1h0")
 script = ExtResource("1_uw3th")
 
-[node name="CardName" type="RichTextLabel" parent="."]
+[node name="CardName" type="RichTextLabel" parent="." groups=["Cards"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,7 +39,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 2
 
-[node name="CardDescription" type="RichTextLabel" parent="."]
+[node name="CardDescription" type="RichTextLabel" parent="." groups=["Cards"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,7 +58,7 @@ CardDescription
 fit_content = true
 scroll_active = false
 
-[node name="CardCost" type="RichTextLabel" parent="."]
+[node name="CardCost" type="RichTextLabel" parent="." groups=["Cards"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,7 +76,7 @@ bbcode_enabled = true
 text = "[center]000
 [/center]"
 
-[node name="CardPower" type="RichTextLabel" parent="."]
+[node name="CardPower" type="RichTextLabel" parent="." groups=["Cards"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,14 +94,14 @@ bbcode_enabled = true
 text = "[center]000
 [/center]"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Cards"]]
 position = Vector2(0, -64)
 scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("2_4hrwb")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Cards"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Cards"]]
 z_index = 4
 shape = SubResource("RectangleShape2D_2a8vh")
 

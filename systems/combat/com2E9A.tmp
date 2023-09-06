@@ -15,9 +15,8 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="13_hli8q"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="14_kryku"]
 
-[node name="CombatSystem" type="Node2D" node_paths=PackedStringArray("state_chart")]
+[node name="CombatSystem" type="Node2D"]
 script = ExtResource("1_ch88t")
-state_chart = NodePath("StateChart")
 
 [node name="Dodger" parent="." instance=ExtResource("2_3y6ij")]
 visible = false
@@ -134,7 +133,3 @@ offset_left = 124.0
 offset_top = 144.0
 offset_right = 501.0
 offset_bottom = 393.0
-
-[connection signal="state_entered" from="StateChart/Game/MainTurns/BeginGame" to="." method="_on_begin_game_state_entered"]
-[connection signal="state_entered" from="StateChart/Game/MainTurns/PlayerTurn" to="." method="_on_player_turn_state_entered"]
-[connection signal="state_entered" from="StateChart/Game/MainTurns/EnemyTurn" to="." method="_on_enemy_turn_state_entered"]
