@@ -1,4 +1,3 @@
-# Code from Godot docs FPS tutorial
 
 extends CharacterBody3D
 class_name Player
@@ -8,38 +7,30 @@ class_name Player
 @export var JUMP_SPEED = 18
 @export var ACCEL = 4.5
 @export var DEACCEL= 16
-@export var MAX_SLOPE_ANGLE = 40
-
-# Camera variables
-@export var MOUSE_SENSITIVITY = 0.05
-@export var MOUSE_SMOOTHING = 10
 
 # Internal variables
-var GRAVITY = -ProjectSettings.get_setting("physics/3d/default_gravity")
 var vel = Vector3()
 var dir = Vector3()
 var cam_input : Vector2
 var rotation_velocity : Vector2
+var input_movement_vector : Vector2
+
+var GRAVITY = -ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # Refs
-@export var camera : Node3D
-@export var rotation_helper : Node3D
+@export var viewmodel : Node3D
 
 # TODO ----
-# 1 Make angles/sliding feel better. Its very snappy and locky and Skyrim-y, for lack of a better word
-# 2 Implement a state machine of some kind
-# 3 Procedural headbob/crouch animations
+# 1 Implement a state machine of some kind
 
 func _ready():
-	#if !camera:
-	#	camera = $CamHolder/Camera3D
-	if !rotation_helper:	
-		rotation_helper = $CamHolder
+	if !viewmodel:	
+		viewmodel = $PlayerCollision
 
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func _process(delta):
+	process_input(delta)
 
 func _physics_process(delta):
-	process_input(delta)
 	process_movement(delta)
 
 func process_input(delta):
@@ -47,7 +38,7 @@ func process_input(delta):
 	# Walking
 	dir = Vector3()
 
-	var input_movement_vector = Vector2()
+	input_movement_vector = Vector2()
 
 	if Input.is_action_pressed("move_forward"):
 		input_movement_vector.y += 1
@@ -72,14 +63,6 @@ func process_input(delta):
 			vel.y = JUMP_SPEED
 	# ----------------------------------
 
-	# ----------------------------------
-	# Capturing/Freeing the cursor
-	#if Input.is_action_just_pressed("ui_cancel"):
-	#	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-	#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#	else:
-	#		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	# ----------------------------------
 
 func process_movement(delta):
 	# Gravity
@@ -107,13 +90,3 @@ func process_movement(delta):
 	
 	velocity = vel
 	move_and_slide()
-
-func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		cam_input = event.relative
-		
-func _process(delta):
-	#rotation_velocity = rotation_velocity.lerp(cam_input * MOUSE_SENSITIVITY, delta * MOUSE_SMOOTHING)
-	#rotation_helper.rotate_y(-deg_to_rad(rotation_velocity.x))
-
-	cam_input = Vector2.ZERO
