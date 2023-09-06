@@ -6,5 +6,5 @@
 script = ExtResource("1_fjugq")
 card_name = "Piercing Arrow"
 card_description = "Shoot an arrow down range"
-card_cost = 2
+card_cost = 1
 card_atk_power = 3

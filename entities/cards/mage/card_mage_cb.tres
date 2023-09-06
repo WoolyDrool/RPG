@@ -6,5 +6,5 @@
 script = ExtResource("1_y2waa")
 card_name = "Concussive Blast"
 card_description = "Emits a powerful blast of air, stunning enemies"
-card_cost = 1
-card_atk_power = 2
+card_cost = 5
+card_atk_power = 3
