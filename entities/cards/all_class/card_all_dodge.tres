@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bksp52gidwr24"]
+
+[ext_resource type="Script" path="res://entities/cards/card_data.gd" id="1_4w1bp"]
+
+[resource]
+script = ExtResource("1_4w1bp")
+card_name = "Dodge"
+card_description = "Automatically dodge 1 enemy attack next turn. Can be drawn multiple times"
+card_cost = 2
+card_atk_power = 0

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="5_ixdnt"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_d061v"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_4bg82"]
-[ext_resource type="PackedScene" uid="uid://ck6q6y5116rlf" path="res://enemies/enemy.tscn" id="8_jnlfx"]
+[ext_resource type="PackedScene" uid="uid://btemepd5op1ol" path="res://systems/combat/combat_system.tscn" id="9_0d1ju"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6sjx"]
 
@@ -125,12 +125,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 player = NodePath("../Player")
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.23, 17.38)
+transform = Transform3D(1, 0, 0, 0, 0.818149, 0.575005, 0, -0.575005, 0.818149, 0, 6.19, 10)
 script = ExtResource("5_ixdnt")
 priority = 0
 follow_mode = 2
 follow_target = NodePath("../Player")
-follow_parameters/target_offset = Vector3(0, 7.23, 17.38)
+follow_parameters/target_offset = Vector3(0, 5.19, 10)
 follow_parameters/damping = false
 look_at_mode = 2
 look_at_target = NodePath("")
@@ -139,10 +139,11 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.23, 17.38)
+transform = Transform3D(1, 0, 0, 0, 0.81815, 0.575006, 0, -0.575006, 0.81815, 0, 6.19, 10)
+projection = 1
+size = 15.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("7_4bg82")
 
-[node name="Enemy" parent="." instance=ExtResource("8_jnlfx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+[node name="CombatSystem" parent="." instance=ExtResource("9_0d1ju")]

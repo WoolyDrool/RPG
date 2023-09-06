@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://c51e43ds5yp25"]
+
+[ext_resource type="Script" path="res://entities/cards/card_data.gd" id="1_6lc1n"]
+
+[resource]
+script = ExtResource("1_6lc1n")
+card_name = "Overhead Strike"
+card_description = "Cleave enemies"
+card_cost = 5
+card_atk_power = 6

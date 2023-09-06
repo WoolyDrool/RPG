@@ -36,7 +36,7 @@ func _ready():
 	if !rotation_helper:	
 		rotation_helper = $CamHolder
 
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	process_input(delta)
@@ -74,11 +74,11 @@ func process_input(delta):
 
 	# ----------------------------------
 	# Capturing/Freeing the cursor
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#if Input.is_action_just_pressed("ui_cancel"):
+	#	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+	#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#	else:
+	#		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# ----------------------------------
 
 func process_movement(delta):
@@ -113,7 +113,7 @@ func _input(event):
 		cam_input = event.relative
 		
 func _process(delta):
-	rotation_velocity = rotation_velocity.lerp(cam_input * MOUSE_SENSITIVITY, delta * MOUSE_SMOOTHING)
-	rotation_helper.rotate_y(-deg_to_rad(rotation_velocity.x))
+	#rotation_velocity = rotation_velocity.lerp(cam_input * MOUSE_SENSITIVITY, delta * MOUSE_SMOOTHING)
+	#rotation_helper.rotate_y(-deg_to_rad(rotation_velocity.x))
 
 	cam_input = Vector2.ZERO

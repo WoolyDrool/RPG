@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://delrhqq1sbdjb"]
+
+[ext_resource type="Script" path="res://entities/cards/card_data.gd" id="1_y2waa"]
+
+[resource]
+script = ExtResource("1_y2waa")
+card_name = "Concussive Blast"
+card_description = "Emits a powerful blast of air, stunning enemies"
+card_cost = 1
+card_atk_power = 2

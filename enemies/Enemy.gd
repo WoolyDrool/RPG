@@ -11,11 +11,18 @@ var player : Node3D
 # TODO: Extract these functions to a specific pathfinding script
 
 func _ready():
-	player = Global.players[0]
-	print(player)
 	nav_agent.max_speed = move_speed
+	try_find_player()
+	
+
+func try_find_player():
+	player = Global.player
 
 func _physics_process(delta):
+	if !player:
+		try_find_player()
+		return
+	
 	update_target_position()
 	
 	if nav_agent.is_target_reachable() and not nav_agent.is_target_reached():

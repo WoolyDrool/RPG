@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2vqw03u5aico"]
+[gd_scene load_steps=9 format=3 uid="uid://c2vqw03u5aico"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_srpgf"]
-[ext_resource type="Script" path="res://player/CombatManager.gd" id="2_gxdk8"]
+[ext_resource type="Script" path="res://systems/properties/property_actions.gd" id="3_5c1yx"]
 [ext_resource type="Script" path="res://player/VitalsManager.gd" id="3_ery6u"]
-[ext_resource type="PackedScene" uid="uid://bcongtkgtitim" path="res://player/ui/player_hud.tscn" id="4_hgg0m"]
-[ext_resource type="PackedScene" uid="uid://cyfi811xyve8e" path="res://systems/fsm/abstract_state_machine.tscn" id="5_wdpe3"]
-[ext_resource type="Script" path="res://player/states/Idle.gd" id="6_x8qh8"]
+[ext_resource type="Script" path="res://systems/properties/property_health.gd" id="4_87frm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_277ni"]
 
@@ -44,31 +42,13 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 1.77636e-14, 0, -1.77636e-14, 1, 0, 0.872288, 0)
 mesh = SubResource("PrismMesh_iehpm")
 
-[node name="CombatManager" type="Node" parent="PlayerCollision"]
-script = ExtResource("2_gxdk8")
-
-[node name="AttackRaycast" type="RayCast3D" parent="PlayerCollision/CombatManager"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
-collision_mask = 257
-collide_with_areas = true
-debug_shape_custom_color = Color(0.941176, 0, 0.501961, 1)
-
-[node name="AttackTimer" type="Timer" parent="PlayerCollision/CombatManager"]
-
 [node name="VitalsManager" type="Node" parent="."]
 script = ExtResource("3_ery6u")
 
-[node name="HUD" parent="." instance=ExtResource("4_hgg0m")]
+[node name="ActionPoints" type="Node" parent="."]
+script = ExtResource("3_5c1yx")
+maximum = 20
 
-[node name="AbstractStateMachine" parent="." instance=ExtResource("5_wdpe3")]
-
-[node name="Idle" type="Node" parent="AbstractStateMachine"]
-script = ExtResource("6_x8qh8")
-
-[node name="Walk" type="Node" parent="AbstractStateMachine"]
-
-[node name="Jump" type="Node" parent="AbstractStateMachine"]
-
-[node name="Attack" type="Node" parent="AbstractStateMachine"]
-
-[connection signal="timeout" from="PlayerCollision/CombatManager/AttackTimer" to="PlayerCollision/CombatManager" method="_on_attack_timer_timeout"]
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_87frm")
+maximum = 12

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dnq4001df3wn7"]
+
+[ext_resource type="Script" path="res://entities/cards/card_data.gd" id="1_fjugq"]
+
+[resource]
+script = ExtResource("1_fjugq")
+card_name = "Piercing Arrow"
+card_description = "Shoot an arrow down range"
+card_cost = 2
+card_atk_power = 3
