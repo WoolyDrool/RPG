@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3n4acjwnh5j6"]
+
+[ext_resource type="Script" path="res://systems/combat/dodger.gd" id="1_spk7u"]
+
+[sub_resource type="Gradient" id="Gradient_1w3kc"]
+colors = PackedColorArray(1.3236e-07, 0.185857, 0.272035, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1vd62"]
+gradient = SubResource("Gradient_1w3kc")
+width = 320
+
+[sub_resource type="Gradient" id="Gradient_wskhv"]
+offsets = PackedFloat32Array(0, 0.469072, 0.520619, 1)
+colors = PackedColorArray(1, 0.521532, 0.658156, 1, 0.585943, 0, 0.146976, 1, 1, 1, 1, 1, 0, 0.522132, 0.0052424, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_secig"]
+gradient = SubResource("Gradient_wskhv")
+width = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3r0r"]
+size = Vector2(32, 64)
+
+[sub_resource type="Gradient" id="Gradient_tpwsu"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.23, 0.23, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k4bd4"]
+gradient = SubResource("Gradient_tpwsu")
+width = 12
+height = 96
+fill_from = Vector2(0, 0.316239)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wqhb"]
+size = Vector2(12, 96)
+
+[node name="Dodger" type="Node2D"]
+script = ExtResource("1_spk7u")
+windup = 1.0
+speed = 2.0
+damage = 1
+
+[node name="BG" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_1vd62")
+
+[node name="WindupTimer" type="Timer" parent="."]
+
+[node name="StartPos" type="Node2D" parent="."]
+position = Vector2(128, 0)
+
+[node name="EndPos" type="Node2D" parent="."]
+position = Vector2(-160, 0)
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-85, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hitbox"]
+texture = SubResource("GradientTexture2D_secig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_d3r0r")
+
+[node name="Scanner" type="Area2D" parent="."]
+position = Vector2(128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Scanner"]
+texture = SubResource("GradientTexture2D_k4bd4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scanner"]
+shape = SubResource("RectangleShape2D_1wqhb")
+
+[connection signal="timeout" from="WindupTimer" to="." method="_on_windup_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
