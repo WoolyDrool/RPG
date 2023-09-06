@@ -54,15 +54,6 @@ func process_input(delta):
 	# Basis vectors are already normalized.
 	dir += -transform.basis.z * input_movement_vector.y
 	dir += transform.basis.x * input_movement_vector.x
-	# ----------------------------------
-
-	# ----------------------------------
-	# Jumping
-	if is_on_floor():
-		if Input.is_action_just_pressed("move_jump"):
-			vel.y = JUMP_SPEED
-	# ----------------------------------
-
 
 func process_movement(delta):
 	# Gravity
