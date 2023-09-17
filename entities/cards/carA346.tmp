@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://l6v8qta4v7i0"]
+[gd_scene load_steps=8 format=3 uid="uid://l6v8qta4v7i0"]
 
 [ext_resource type="Script" path="res://entities/cards/Card.gd" id="1_uw3th"]
 [ext_resource type="Texture2D" uid="uid://ivhgb4nqx1fa" path="res://icon.svg" id="2_4hrwb"]
-[ext_resource type="Script" path="res://entities/cards/functions/card_functions.gd" id="3_d5rky"]
+[ext_resource type="Script" path="res://entities/cards/properties/card_property.gd" id="3_wdwc0"]
+[ext_resource type="Script" path="res://entities/cards/properties/general/cprop_ap_damage.gd" id="4_xjodj"]
 
 [sub_resource type="Gradient" id="Gradient_riw6n"]
 interpolation_mode = 2
@@ -106,8 +107,13 @@ texture = ExtResource("2_4hrwb")
 z_index = 4
 shape = SubResource("RectangleShape2D_2a8vh")
 
-[node name="CardFunctions" type="Node" parent="."]
-script = ExtResource("3_d5rky")
+[node name="Properties" type="Node" parent="."]
+
+[node name="ApplyHealthDamage" type="Node" parent="Properties" groups=["CardProperties"]]
+script = ExtResource("3_wdwc0")
+
+[node name="ApplyAPDamage" type="Node" parent="Properties" groups=["CardProperties"]]
+script = ExtResource("4_xjodj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

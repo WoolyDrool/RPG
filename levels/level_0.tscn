@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://baxn6hlduca8a"]
+[gd_scene load_steps=15 format=3 uid="uid://baxn6hlduca8a"]
 
 [ext_resource type="PackedScene" uid="uid://dtjht0hatykqg" path="res://env/debug_platform.tscn" id="1_jjryt"]
 [ext_resource type="PackedScene" uid="uid://c2vqw03u5aico" path="res://player/player.tscn" id="2_o2orf"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="5_ixdnt"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_d061v"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_4bg82"]
+[ext_resource type="PackedScene" uid="uid://ck6q6y5116rlf" path="res://enemies/enemy.tscn" id="8_ejfnx"]
 [ext_resource type="PackedScene" uid="uid://btemepd5op1ol" path="res://systems/combat/combat_system.tscn" id="9_0d1ju"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6sjx"]
@@ -145,5 +146,8 @@ size = 15.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("7_4bg82")
+
+[node name="Enemy" parent="." instance=ExtResource("8_ejfnx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
 [node name="CombatSystem" parent="." instance=ExtResource("9_0d1ju")]

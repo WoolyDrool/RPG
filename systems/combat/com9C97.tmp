@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://systems/combat/combat_system.gd" id="1_ch88t"]
 [ext_resource type="PackedScene" uid="uid://d3n4acjwnh5j6" path="res://systems/combat/dodger.tscn" id="2_3y6ij"]
 [ext_resource type="PackedScene" uid="uid://l6v8qta4v7i0" path="res://entities/cards/card.tscn" id="2_gqsfb"]
-[ext_resource type="Script" path="res://entities/cards/deck_manager.gd" id="3_cxh02"]
 [ext_resource type="Resource" uid="uid://delrhqq1sbdjb" path="res://entities/cards/mage/card_mage_cb.tres" id="4_uxy2x"]
 [ext_resource type="Resource" uid="uid://c51e43ds5yp25" path="res://entities/cards/knight/card_knight_ostrike.tres" id="5_o6qgh"]
 [ext_resource type="Resource" uid="uid://bksp52gidwr24" path="res://entities/cards/all_class/card_all_dodge.tres" id="6_4yups"]
@@ -14,6 +13,36 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="12_ujkb7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="13_hli8q"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="14_kryku"]
+
+[sub_resource type="GDScript" id="GDScript_qwg6k"]
+script/source = "extends Node
+
+class_name DeckManager
+
+@export var user : CombatCharacter
+
+var current_action_points = 12
+
+func _ready():
+	for i in self.get_children():
+		if i.is_in_group(\"Cards\"):
+			var card : Card = i
+			card.on_card_play.connect(draw_card)
+			card.deck_manager = self
+			print(user.character_name, \" registered \", card)
+			card = null
+		else:
+			return
+		
+		
+func draw_card(played_card_name : String, played_card_cost : int, played_card_atkpwr : int):
+	print(\"played \", played_card_name, \" for \", played_card_cost, \" and did \", played_card_atkpwr)
+	current_action_points -= played_card_cost
+	$ActionPoints.text = str(current_action_points)
+	pass
+	
+	
+"
 
 [node name="CombatSystem" type="Node2D"]
 script = ExtResource("1_ch88t")
@@ -50,8 +79,7 @@ theme_override_font_sizes/font_size = 40
 text = "End Turn"
 
 [node name="DeckManager" type="Node" parent="."]
-script = ExtResource("3_cxh02")
-deck = NodePath("")
+script = SubResource("GDScript_qwg6k")
 
 [node name="Card" parent="DeckManager" instance=ExtResource("2_gqsfb")]
 position = Vector2(224, 784)

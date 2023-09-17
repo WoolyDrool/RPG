@@ -1,12 +1,13 @@
-extends Resource
+extends Node
 
-class_name CardData
+class_name Deck
 
-@export var card_name : String
-@export var card_description : String
-@export var card_cost : int
-@export var card_atk_power : int
-@export var is_placeable : bool
+@export var cards_in_deck = []
+var deck_dict : Dictionary = {}
+var dict_card_name
+
+var max_deck_size : int
+var min_deck_size : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

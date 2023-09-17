@@ -24,6 +24,8 @@ var GRAVITY = -ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	if !viewmodel:	
 		viewmodel = $PlayerCollision
+	
+	CombatSystem.add_combatant($CombatCharacter, true)
 
 func _process(delta):
 	process_input(delta)

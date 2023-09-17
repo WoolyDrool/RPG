@@ -51,7 +51,6 @@ text = "End Turn"
 
 [node name="DeckManager" type="Node" parent="."]
 script = ExtResource("3_cxh02")
-deck = NodePath("")
 
 [node name="Card" parent="DeckManager" instance=ExtResource("2_gqsfb")]
 position = Vector2(224, 784)

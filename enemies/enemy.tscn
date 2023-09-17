@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck6q6y5116rlf"]
+[gd_scene load_steps=6 format=3 uid="uid://ck6q6y5116rlf"]
 
 [ext_resource type="Script" path="res://enemies/Enemy.gd" id="1_hosw1"]
+[ext_resource type="Script" path="res://systems/combat/combat_character.gd" id="2_exsgl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v4icy"]
 size = Vector3(1, 2, 1)
@@ -26,3 +27,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConcavePolygonShape3D_gcnsd")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CombatCharacter" type="Node" parent="."]
+script = ExtResource("2_exsgl")
+character_name = "Enemy"
+character_health = 20
+character_ap = 20

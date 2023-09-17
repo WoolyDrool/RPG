@@ -8,11 +8,11 @@ class_name Card
 @onready var label_desc : RichTextLabel = $CardDescription
 @onready var label_cost : RichTextLabel = $CardCost
 @onready var label_power : RichTextLabel = $CardPower
-
-var properties 
+var target : CombatCharacter
 
 var can_play : bool = false
 var deck_manager : DeckManager
+var card_functions : CardFunction
 
 signal on_card_play(cname, ccost, catkpwr)
 
@@ -28,6 +28,8 @@ func init():
 		label_power.text = str(card_data.card_atk_power)
 		deck_manager = get_parent()
 		can_play = true
+		
+		card_functions.card_data = card_data
 	else:
 		can_play = false
 		#print(card_data.card_name)
@@ -38,7 +40,9 @@ func _process(delta):
 
 func play_card():
 	can_play = false
-	emit_signal("on_card_play", card_data.card_name, card_data.card_cost, card_data.card_atk_power)
+	emit_signal("on_card_play", target, card_data.card_name, card_data.card_cost, card_data.card_atk_power)
+	#for p in card_data.card_properties: # terrible awful no good code just to get it working
+	#		p.activate_property()
 	# do card stuff
 	queue_free()
 

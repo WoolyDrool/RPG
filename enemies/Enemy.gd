@@ -13,6 +13,7 @@ var player : Node3D
 func _ready():
 	nav_agent.max_speed = move_speed
 	try_find_player()
+	CombatSystem.add_combatant($CombatCharacter, false)
 	
 
 func try_find_player():
